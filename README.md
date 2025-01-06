@@ -8,6 +8,9 @@ Mapify is an open source project that will allow to users to convert any images 
 - More soon
 
 
+## Dependecies
+
+[JSzip](https://stuk.github.io/jszip/) by [Stuck](https://github.com/Stuk)
 ## Contributing
 
 Contributions are always welcome!
