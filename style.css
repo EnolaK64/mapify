@@ -56,9 +56,10 @@ body {
 }
 
 a{
-    position: relative;
+    position: absolute;
+    justify-self: center;
     color: #fff;
-    bottom: 30px;
+    bottom: 20px;
     background-color: var(--bgcCard);
     padding: 12px;
     border-radius: 6px;
