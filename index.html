@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/lib/jszip/dist/jszip.min.js"></script>
+    <title>Document</title>
+    <link rel="shortcut icon" href="/assets/icon32.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="settings">
+        <p id="sizeIndicator"><span class="directValue">1</span>x<span class="directValue">1</span> ( <span
+                class="pixelValue">128</span>x<span class="pixelValue">128</span> )</p>
+        <p id="areaIndicator">Total area: <span class="area"></span> pixels ( <span class="mapEqui">1</span> maps )</p>
+        <p class="warning">(bigger = takes longer)</p>
+        </p>
+        <input type="range" id="size" name="size" min="1" max="5" value="1">
+
+    </div>
+    <input type="file" id="mapInput" accept="image/*">
+    <div id="inputDiv" class="canvasCon">
+        <p>Your image</p>
+        <canvas id="mapCanvas" class="canvas" width="128" height="128"></canvas>
+    </div>
+    <div id="output" class="canvasCon">
+        <p>Preview</p>
+        <canvas id="resultCanvas" class="canvas" width="128" height="128"></canvas>
+    </div>
+    <script src="index.js" type="module"></script>
+</body>
+
+</html>

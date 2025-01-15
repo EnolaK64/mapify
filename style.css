@@ -1,0 +1,56 @@
+:root{
+    --bgcBody:#1b1b1b;
+    --bgcCard: #252525;
+    --warning: #9b341b;
+}
+
+body {
+    font-family: "Pixelify Sans", serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bgcBody);
+    color: #fff;
+}
+
+#settings {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    border-radius: 6px;
+    background-color: var(--bgcCard);
+    padding: 12px
+}
+
+#mapInput {
+    position: fixed;
+    top: 50px;
+}
+
+#mapCanvas{
+    position: relative;
+
+}
+
+.canvasCon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.canvasCon > p {
+    font-size: x-large;
+}
+
+.canvas{
+    max-width: 500px;
+    border: #cdcdcd solid;
+}
+
+.warning{
+    color: var(--warning);
+    font-weight: bold;
+}

@@ -1,0 +1,6 @@
+first open your .minecraft folder (press Win + R type %appData% press enter)
+after that go in your saves folder
+open the world folder you want to import the maps into
+open the data folder and copy and paste it all the content of the "maps" folder from the zip file
+now go back to the previous folder and open the "datapacks" folder copy and paste the datapack folder from zip file
+now you can launch your game and ran the command from the "command.txt" file in the game
