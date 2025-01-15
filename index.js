@@ -95,7 +95,7 @@ async function fetchHeaders(image) {
 
 
 async function toCanvas(image, size) {
-console.time("test")
+console.time("body")
 
     ctx.drawImage(image, 0, 0, size, size);
     let counter = 0
@@ -106,7 +106,7 @@ console.time("test")
             counter++
         }
     }
-    console.timeEnd("test")    
+    console.timeEnd("body")    
 }
 
 
@@ -117,16 +117,19 @@ function workersCall(parametters, offsets) {
     worker.postMessage(parametters)
     worker.onmessage = async(e) => {
         const mapLink = await createLink(e.data[0])
-        links[e.data[1]] = mapLink
+        links.push(mapLink)
         console.log(links)
         let full = true
         const filesAmount = JSON.parse(localStorage.getItem("filesAmount"))
         console.log(filesAmount)
+        console.log(e.data[1])
         for (let i = 0; i < filesAmount; i++) {
+            console.log(!links[i])
             if(!links[i]){
                 full = false
             }
         }
+        console.log(full)
         if(full === true){
             createZipFile(links)
         }

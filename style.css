@@ -54,3 +54,12 @@ body {
     color: var(--warning);
     font-weight: bold;
 }
+
+a{
+    position: relative;
+    color: #fff;
+    bottom: 30px;
+    background-color: var(--bgcCard);
+    padding: 12px;
+    border-radius: 6px;
+}
