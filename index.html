@@ -21,18 +21,27 @@
         <p class="warning">(bigger = takes longer)</p>
         </p>
         <input type="range" id="size" name="size" min="1" max="5" value="1">
+        <br>
+        <label for="perfMode">Perfomance mode</label>
+        <input type="checkbox" name="perfMode" id="perfMode" value="perf" checked>
 
     </div>
-    <input type="file" id="mapInput" accept="image/*">
+    <label for="mapInput" id="customMapInput"><span class="upload icon"></span>Upload Files</label>
+    <input type="file" id="mapInput" accept="image/*" name="mapInput">
+    <input type="text" placeholder="Enter Image URL" id="mapInputURL">
+    <p id="pasteIndicator">Or paste an image</p>
+
     <div id="inputDiv" class="canvasCon">
         <p>Your image</p>
         <canvas id="mapCanvas" class="canvas" width="128" height="128"></canvas>
     </div>
+    <button id="convert">Convert <span class="icon arrow"></span></button>
     <div id="output" class="canvasCon">
         <p>Preview</p>
         <canvas id="resultCanvas" class="canvas" width="128" height="128"></canvas>
     </div>
     <script src="index.js" type="module"></script>
+    <script src="/lib/loadIcons.js" type="module"></script>
 </body>
 
 </html>

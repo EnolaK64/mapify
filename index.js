@@ -16,34 +16,112 @@ class myTextEncoder {
 }
 
 
-const imageElement = document.getElementById("mapInput")
-imageElement.addEventListener("change", () => {
+addEventListener("paste", (e) => {
+    if (isInputFocused) {
+        return
+    }
+    isURL = false
+    e.preventDefault()
+    const files = e.clipboardData.files
+    if (files.length > 0) {
+        startConvertion(files)
+    }
+    else {
+        alert("Your clipboard do not contain and image")
+    }
+
 })
+
+
+
+const convertBtn = document.getElementById("convert")
+convertBtn.addEventListener("click", startConvertion)
 
 const sizeElement = document.getElementById("size")
 let sizeValue = 128
 let value = sizeElement.value
 updateSize(value)
+
 sizeElement.addEventListener("input", () => {
     value = sizeElement.value
     updateSize(value)
 })
+let isURL = false
+let isInputFocused = false
+const inputURL = document.getElementById("mapInputURL")
+inputURL.addEventListener("change", (e) => {
+    isURL = true
+    const url = e.target.value
+    if (!(url.startsWith("http://") || url.startsWith("https://"))) { //if not a link
+        inputURL.classList.add("wrong")
+    }
+    else{
+        inputURL.classList.remove("wrong")
+    }
+})
 
+inputURL.addEventListener("focusin", () => {
+    isInputFocused = true
+    console.log("foc")
+})
+
+inputURL.addEventListener("focusout", () => {
+    isInputFocused = false
+    console.log("unfoc")
+})
 
 const input = document.getElementById('mapInput');
 
-input.addEventListener('change', async function (e) {
-    const [files] = e.target.files;
-    const reader = new FileReader();
-    reader.onloadend = () => {
-        const image = new Image
-        image.src = reader.result
-        image.style.display = "none"
-        document.body.append(image)
+input.addEventListener('change', () => {
+    isURL = false
+});
+
+async function startConvertion(pastedFiles) {
+    const url = inputURL.value
+    console.log(url)
+    const image = new Image
+    image.style.display = "none"
+    if (isURL) {
+        if (!(url.startsWith("http://") || url.startsWith("https://"))) { //if not a link
+            alert("Please entre a valid URL")
+            return
+        }
+        image.onerror = (e) => {
+            alert("Sorry your image can't be reached")
+        }
+
+        image.onload = () => {
+            fetchHeaders(image)
+        }
+
+        image.setAttribute("crossOrigin", "")
+        image.src = url
+
+    }
+    else {
+        const [files] = input.files
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            if (!reader.result.startsWith("data:image/")) {
+                alert("Please paste an image file")
+                return
+            }
+            image.src = reader.result
+        }
+
+        if (pastedFiles) {
+            reader.readAsDataURL(pastedFiles[0])
+        }
+        else {
+            reader.readAsDataURL(files)
+        }
+    }
+    document.body.append(image)
+    if (!isURL) {
+        console.log(image)
         fetchHeaders(image)
     }
-    reader.readAsDataURL(files)
-});
+}
 
 let GlobalComplements
 
@@ -93,29 +171,30 @@ async function fetchHeaders(image) {
 }
 
 
-
+const perfMode = document.getElementById("perfMode")
 async function toCanvas(image, size) {
-console.time("body")
-
+    console.time("body")
+    ctx.clearRect(0,0, canvas.width, canvas.height)
     ctx.drawImage(image, 0, 0, size, size);
+
     let counter = 0
     for (let offsetY = 0; offsetY < size; offsetY = offsetY + 128) {
         for (let offsetX = 0; offsetX < size; offsetX = offsetX + 128) {
             const imgData = ctx.getImageData(offsetX, offsetY, 128, 128)
-            workersCall([imgData, GlobalComplements, counter], [offsetX, offsetY])
+            workersCall([imgData, GlobalComplements, counter], [offsetX, offsetY], perfMode.checked)
             counter++
         }
     }
-    console.timeEnd("body")    
+    console.timeEnd("body")
 }
 
 
 
 const links = []
 function workersCall(parametters, offsets) {
-    const worker = new Worker("/lib/generateMapFile.js", {type:"module"})
+    const worker = new Worker("/lib/generateMapFile.js", { type: "module" })
     worker.postMessage(parametters)
-    worker.onmessage = async(e) => {
+    worker.onmessage = async (e) => {
         const mapLink = await createLink(e.data[0])
         links.push(mapLink)
         console.log(links)
@@ -125,12 +204,12 @@ function workersCall(parametters, offsets) {
         console.log(e.data[1])
         for (let i = 0; i < filesAmount; i++) {
             console.log(!links[i])
-            if(!links[i]){
+            if (!links[i]) {
                 full = false
             }
         }
         console.log(full)
-        if(full === true){
+        if (full === true) {
             createZipFile(links)
         }
         console.log(e.data[1])

@@ -25,9 +25,19 @@ body {
     padding: 12px
 }
 
-#mapInput {
+#customMapInput {
     position: fixed;
-    top: 50px;
+    top: 20px;
+    background-color: var(--bgcCard);
+    padding: 12px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#mapInput{
+    display: none;
 }
 
 #mapCanvas{
@@ -43,6 +53,7 @@ body {
 
 .canvasCon > p {
     font-size: x-large;
+    margin: 0px;
 }
 
 .canvas{
@@ -63,4 +74,63 @@ a{
     background-color: var(--bgcCard);
     padding: 12px;
     border-radius: 6px;
+}
+
+
+#convert{
+    background-color: var(--bgcCard);
+    width: 300px;
+    height: 100px;
+    border: 0px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: "Pixelify Sans", serif;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+.icon > svg{
+    fill: #fff;
+    width: 50px;
+    height: auto;
+}
+
+.icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+#mapInputURL{
+    color: #cdcdcd;
+    background-color: var(--bgcBody);
+    border: 0px;
+    padding: 12px;
+    border-radius: 6px;
+    outline: var(--bgcCard) solid 10px;
+    position: fixed;
+    top: 100px;
+    width: 400px;
+    font-family: "Pixelify Sans", serif;
+}
+
+.upload> svg{
+    width: 30px;
+}
+
+
+#pasteIndicator{
+    position: fixed;
+    top: 150px;
+}
+
+
+#mapInputURL.wrong{
+    background-color: #251B1B;
 }
