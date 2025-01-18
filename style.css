@@ -66,7 +66,7 @@ body {
     font-weight: bold;
 }
 
-a{
+#dlLink{
     position: absolute;
     justify-self: center;
     color: #fff;
@@ -133,4 +133,21 @@ a{
 
 #mapInputURL.wrong{
     background-color: #251B1B;
+}
+
+footer{
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 12px;
+}
+
+.github-mark{
+    text-decoration: none;
+}
+
+.github-mark > img{
+    width: 50px;
+    height: auto;
 }

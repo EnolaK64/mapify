@@ -253,6 +253,7 @@ function createZipFile(link) {
     zipFile.file("command.txt", "/function map_giver:give_maps")
     zipFile.generateAsync({ type: "base64" }).then((content) => {
         const link = document.createElement("a")
+        link.id = "dlLink"
         link.href = "data:application/zip;base64," + content
         link.download = "zipFile.zip"
         link.innerText = "download zip"
