@@ -1,6 +1,7 @@
 # mapify
 
-Mapify is an open source project that will allow to users to convert any images to a Minecraft map. It is still being worked on but will release soon.
+Mapify is an open source project that will allow to users to convert any images to a Minecraft map.
+
 ## Features
 
 - Make multi map art
