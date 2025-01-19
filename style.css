@@ -141,13 +141,21 @@ footer{
     right: 0px;
     bottom: 0px;
     padding: 12px;
+    display: flex;
+    justify-content: center;
 }
 
 .github-mark{
+    position: absolute;
     text-decoration: none;
+    left: 12px;
 }
 
 .github-mark > img{
     width: 50px;
     height: auto;
+}
+
+#disclaimer{
+    justify-self: center;
 }
