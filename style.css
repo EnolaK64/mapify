@@ -7,7 +7,7 @@
 body {
     font-family: "Pixelify Sans", serif;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
     width: 100vw;
@@ -57,8 +57,9 @@ body {
 }
 
 .canvas{
-    max-width: 500px;
+    max-width: 256px;
     border: #cdcdcd solid;
+    margin: 0px 50px;
 }
 
 .warning{
